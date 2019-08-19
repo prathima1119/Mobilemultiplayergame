@@ -707,6 +707,8 @@ GameObject:
   - component: {fileID: 4506866644247293343}
   - component: {fileID: 2667825112923180461}
   - component: {fileID: 87684961}
+  - component: {fileID: 1971533132609928895}
+  - component: {fileID: 4893992169398826841}
   m_Layer: 0
   m_Name: PlayerPrefab
   m_TagString: Untagged
@@ -778,10 +780,10 @@ MonoBehaviour:
   ObservedComponentsFoldoutOpen: 1
   Group: 0
   prefixField: -1
-  Synchronization: 0
+  Synchronization: 3
   OwnershipTransfer: 0
   ObservedComponents:
-  - {fileID: 0}
+  - {fileID: 4893992169398826841}
   viewIdField: 0
   InstantiationId: 0
   isRuntimeInstantiated: 0
@@ -803,6 +805,9 @@ MonoBehaviour:
   Soldier_ChildGameObject:
   - {fileID: 4506866644551376881}
   - {fileID: 4506866643930429579}
+  PlayerUIPrefab: {fileID: 8167185082210537510, guid: 4a63d7687076b404a938b358a81fdc67,
+    type: 3}
+  FPSCamera: {fileID: 21012650}
 --- !u!114 &87684961
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -858,20 +863,51 @@ MonoBehaviour:
       m_RotationOrder: 4
     CurrentTargetSpeed: 8
   mouseLook:
-    XSensitivity: 2
-    YSensitivity: 2
+    XSensitivity: 0.2
+    YSensitivity: 0.2
     clampVerticalRotation: 1
     MinimumX: -90
     MaximumX: 90
     smooth: 0
     smoothTime: 5
-    lockCursor: 1
+    lockCursor: 0
+    lookInputAxis: {x: 0, y: 0}
   advancedSettings:
     groundCheckDistance: 0.01
     stickToGroundHelperDistance: 0.5
     slowDownRate: 150
     airControl: 1
     shellOffset: 0
+  joystickInputAxis: {x: 0, y: 0}
+--- !u!114 &1971533132609928895
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4506866644247293312}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c6f25f9518ce9de409991e5cb7df9d35, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  joyStick: {fileID: 0}
+  fixedTouchField: {fileID: 0}
+--- !u!114 &4893992169398826841
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4506866644247293312}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 627855c7f81362d41938ffe0b1475957, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_SynchronizePosition: 1
+  m_SynchronizeRotation: 1
+  m_SynchronizeScale: 0
 --- !u!1 &4506866644251934185
 GameObject:
   m_ObjectHideFlags: 0

@@ -2,14 +2,20 @@
 using System.Collections.Generic;
 using UnityEngine;
 using Photon.Pun;
+using UnityStandardAssets.Characters.FirstPerson;
 
 public class PlayerSetup : MonoBehaviourPunCallbacks
 {
     public GameObject[] FPS_Hands_ChildGameObject;
     public GameObject[] Soldier_ChildGameObject;
+    public GameObject PlayerUIPrefab;
+    private PlayerMovementController playerMovementController;
+    public Camera FPSCamera;
+
     // Start is called before the first frame update
     void Start()
     {
+        playerMovementController = GetComponent<PlayerMovementController>();
         if(photonView.IsMine)
         {
             //Activate fps soldier,deactivate hands
@@ -21,6 +27,15 @@ public class PlayerSetup : MonoBehaviourPunCallbacks
             {
                 gameObject.SetActive(false);
             }
+
+            //Instantiate PlayerUI
+            GameObject playerUIGameObject = Instantiate(PlayerUIPrefab);
+            playerMovementController.joyStick = playerUIGameObject.transform.Find("Fixed Joystick").GetComponent<Joystick>();
+            playerMovementController.fixedTouchField = playerUIGameObject.transform.Find("RotationTouchField").GetComponent<FixedTouchField>();
+
+
+            FPSCamera.enabled = true;
+
         }
         else
         {
@@ -33,6 +48,10 @@ public class PlayerSetup : MonoBehaviourPunCallbacks
             {
                 gameObject.SetActive(true);
             }
+
+            playerMovementController.enabled = false;
+            GetComponent<RigidbodyFirstPersonController>().enabled = false;
+            FPSCamera.enabled = false;
         }
         
     }
