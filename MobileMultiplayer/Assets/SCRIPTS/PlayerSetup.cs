@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using Photon.Pun;
 using UnityStandardAssets.Characters.FirstPerson;
+using UnityEngine.UI;
+
 
 public class PlayerSetup : MonoBehaviourPunCallbacks
 {
@@ -11,10 +13,14 @@ public class PlayerSetup : MonoBehaviourPunCallbacks
     public GameObject PlayerUIPrefab;
     private PlayerMovementController playerMovementController;
     public Camera FPSCamera;
+    private Animator animator;
+    private Shooting shooter;
 
     // Start is called before the first frame update
     void Start()
     {
+        shooter = GetComponent<Shooting>();
+        animator = GetComponent<Animator>();
         playerMovementController = GetComponent<PlayerMovementController>();
         if(photonView.IsMine)
         {
@@ -33,8 +39,9 @@ public class PlayerSetup : MonoBehaviourPunCallbacks
             playerMovementController.joyStick = playerUIGameObject.transform.Find("Fixed Joystick").GetComponent<Joystick>();
             playerMovementController.fixedTouchField = playerUIGameObject.transform.Find("RotationTouchField").GetComponent<FixedTouchField>();
 
-
+            playerUIGameObject.transform.Find("FireButton").GetComponent<Button>().onClick.AddListener(()=>shooter.Fire());
             FPSCamera.enabled = true;
+            animator.SetBool("IsSoldier", false);
 
         }
         else
@@ -52,6 +59,7 @@ public class PlayerSetup : MonoBehaviourPunCallbacks
             playerMovementController.enabled = false;
             GetComponent<RigidbodyFirstPersonController>().enabled = false;
             FPSCamera.enabled = false;
+            animator.SetBool("IsSoldier", true);
         }
         
     }

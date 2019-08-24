@@ -28,7 +28,7 @@ public class PlayerMovementController : MonoBehaviour
 
     private void FixedUpdate()
     {
-        rigidBodyController.joystickInputAxis.x = joyStick.Horizontal;
+     
         rigidBodyController.joystickInputAxis.y = joyStick.Vertical;
         rigidBodyController.mouseLook.lookInputAxis = fixedTouchField.TouchDist;
 
@@ -38,7 +38,7 @@ public class PlayerMovementController : MonoBehaviour
         animator.SetFloat("Horizontal", joyStick.Horizontal);
         animator.SetFloat("Vertical", joyStick.Vertical);
 
-        if(Mathf.Abs(joyStick.Horizontal)>0.9f || Mathf.Abs(joyStick.Vertical)>0.9f)
+        if (Mathf.Abs(joyStick.Horizontal) > 0.9f || Mathf.Abs(joyStick.Vertical) > 0.9f)
         {
             //running
             rigidBodyController.movementSettings.ForwardSpeed = 16;
@@ -51,5 +51,10 @@ public class PlayerMovementController : MonoBehaviour
             rigidBodyController.movementSettings.ForwardSpeed = 8;
             animator.SetBool("Horizontal", false);
         }
+    }
+
+    private void NewMethod()
+    {
+        rigidBodyController.joystickInputAxis.x = joyStick.Horizontal;
     }
 }
