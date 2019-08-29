@@ -36,5 +36,6 @@ MonoBehaviour:
   - RespawnSpaceship
   - TakeDamage
   - CreateHitEffect
+  - RegainHealth
   DisableAutoOpenWizard: 1
   ShowSettings: 1
